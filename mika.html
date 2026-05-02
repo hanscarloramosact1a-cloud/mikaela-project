@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para sa'yo Mikaela kwkwkw</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
+}
+
+body{
+background:linear-gradient(-45deg,#ff5fa2,#ff9cc8,#ffc7de,#ff7eb6);
+background-size:400% 400%;
+animation:bgmove 8s infinite alternate;
+}
+
+@keyframes bgmove{
+0%{background-position:left;}
+100%{background-position:right;}
+}
+
+.page{
+width:100%;
+height:100vh;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+position:absolute;
+top:0;
+left:0;
+padding:20px;
+overflow:hidden;
+}
+
+.active{
+display:flex;
+}
+
+.bubble{
+position:absolute;
+bottom:-100px;
+background:rgba(255,255,255,.25);
+border-radius:50%;
+animation:rise 10s linear infinite;
+pointer-events:none;
+}
+
+@keyframes rise{
+from{transform:translateY(0);}
+to{transform:translateY(-120vh);}
+}
+
+.start-box{
+text-align:center;
+color:white;
+z-index:2;
+}
+
+.start-box h1{
+font-size:50px;
+margin-bottom:20px;
+}
+
+.start-box p{
+font-size:20px;
+margin-bottom:30px;
+}
+
+.start-btn,.enter-btn,.close-btn,.yes,.no,.gallery-btn{
+padding:14px 28px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+font-weight:bold;
+margin-top:15px;
+}
+
+.start-btn,.enter-btn,.yes,.gallery-btn{
+background:white;
+color:#ff3d7f;
+}
+
+.no,.close-btn{
+background:#ff3d7f;
+color:white;
+}
+
+.title{
+color:white;
+margin-bottom:20px;
+z-index:2;
+}
+
+.lock{
+width:150px;
+height:150px;
+background:#ff2d75;
+position:relative;
+transform:rotate(-45deg);
+margin:40px auto;
+}
+
+.lock:before,.lock:after{
+content:'';
+position:absolute;
+width:150px;
+height:150px;
+background:#ff2d75;
+border-radius:50%;
+}
+
+.lock:before{
+top:-75px;
+left:0;
+}
+
+.lock:after{
+left:75px;
+top:0;
+}
+
+.lock-key{
+position:absolute;
+width:20px;
+height:20px;
+background:white;
+border-radius:50%;
+top:55px;
+left:55px;
+transform:rotate(45deg);
+}
+
+.lock-key:after{
+content:'';
+position:absolute;
+width:6px;
+height:20px;
+background:white;
+top:20px;
+left:7px;
+}
+
+.inputs input{
+width:50px;
+height:60px;
+font-size:26px;
+text-align:center;
+border:none;
+border-radius:10px;
+margin:5px;
+}
+
+.envelope{
+width:250px;
+height:160px;
+background:white;
+border-radius:12px;
+position:relative;
+cursor:pointer;
+z-index:2;
+}
+
+.envelope:before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+border-left:125px solid transparent;
+border-right:125px solid transparent;
+border-top:80px solid #ffd1e4;
+}
+
+.envelope p{
+position:absolute;
+bottom:20px;
+width:100%;
+text-align:center;
+color:#ff3d7f;
+font-size:22px;
+font-weight:bold;
+}
+
+.popup,.question-box,.gallery-box{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.55);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:99;
+}
+
+.letter,.question,.gallery{
+width:90%;
+max-width:520px;
+background:white;
+padding:25px;
+border-radius:20px;
+text-align:center;
+max-height:90vh;
+overflow:auto;
+}
+
+#typed{
+line-height:1.8;
+min-height:180px;
+color:#444;
+}
+
+.slider{
+width:90%;
+max-width:350px;
+height:500px;
+overflow:hidden;
+border-radius:20px;
+position:relative;
+background:white;
+box-shadow:0 15px 25px rgba(0,0,0,.25);
+z-index:2;
+}
+
+.slides{
+display:flex;
+height:100%;
+transition:0.5s;
+}
+
+.slides img{
+min-width:100%;
+height:100%;
+object-fit:contain;
+background:white;
+padding:8px;
+}
+
+.nav{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+font-size:30px;
+color:white;
+background:rgba(0,0,0,.3);
+padding:5px 15px;
+cursor:pointer;
+user-select:none;
+}
+
+.prev{left:10px;}
+.next{right:10px;}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-top:15px;
+}
+
+.grid img{
+width:100%;
+height:120px;
+object-fit:cover;
+border-radius:10px;
+}
+
+@media (max-width:600px){
+.start-box h1{font-size:32px;}
+.start-box p{font-size:16px;}
+.slider{height:420px;}
+.grid{grid-template-columns:repeat(2,1fr);}
+.grid img{height:100px;}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+<source src="hans.mp3" type="audio/mpeg">
+</audio>
+
+<div class="page active" id="page1">
+<div class="start-box">
+<h1>For Mikaela ❤️</h1>
+<p>A special surprisa is waiting for you kwkwkw</p>
+<button class="start-btn" onclick="startSite()">Open Surprise</button>
+</div>
+</div>
+
+<div class="page" id="page2">
+<h1 class="title">For Your Eyes Only</h1>
+<div class="lock"><div class="lock-key"></div></div>
+
+<div class="inputs">
+<input maxlength="1" id="n1">
+<input maxlength="1" id="n2">
+<input maxlength="1" id="n3">
+<input maxlength="1" id="n4">
+</div>
+
+<button class="enter-btn" onclick="checkPass()">ENTER</button>
+</div>
+
+<div class="page" id="page3">
+<h1 class="title">You Got A Letter 💌</h1>
+
+<div class="envelope" onclick="openLetter()">
+<p>Open mo nga</p>
+</div>
+
+<div class="popup" id="popup">
+<div class="letter">
+<h2>To Mikzmikzmikz ❤️</h2>
+<p id="typed"></p>
+<button class="close-btn" onclick="askMemories()">Close</button>
+</div>
+</div>
+
+<div class="question-box" id="question">
+<div class="question">
+<h2>Do you want to see our memoshishhxdddd?</h2>
+<button class="yes" id="yesBtn" onclick="nextPage(4)">Yes</button>
+<button class="no" onclick="growYes()">No</button>
+</div>
+</div>
+</div>
+
+<div class="page" id="page4">
+<h1 class="title">Our Memories 📸</h1>
+
+<div class="slider">
+<div class="slides" id="slides">
+<img src="12.jpg">
+<img src="34.jpg">
+<img src="56.jpg">
+<img src="78.jpg">
+<img src="910.jpg">
+<img src="1112.jpg">
+<img src="1314.jpg">
+</div>
+
+<div class="nav prev" onclick="moveSlide(-1)">❮</div>
+<div class="nav next" onclick="moveSlide(1)">❯</div>
+</div>
+
+<button class="gallery-btn" onclick="openGallery()">See All Photos</button>
+</div>
+
+<div class="gallery-box" id="galleryBox">
+<div class="gallery">
+<h2 style="color:#ff3d7f;">All Memories </h2>
+
+<div class="grid">
+<img src="12.jpg">
+<img src="34.jpg">
+<img src="56.jpg">
+<img src="78.jpg">
+<img src="910.jpg">
+<img src="1112.jpg">
+<img src="1314.jpg">
+</div>
+
+<button class="close-btn" onclick="closeGallery()">Close</button>
+</div>
+</div>
+
+<script>
+for(let i=0;i<20;i++){
+let b=document.createElement("div");
+b.className="bubble";
+b.style.left=Math.random()*100+"%";
+b.style.width=b.style.height=(20+Math.random()*40)+"px";
+b.style.animationDuration=(5+Math.random()*6)+"s";
+document.body.appendChild(b);
+}
+
+function startSite(){
+document.getElementById("bgMusic").play();
+nextPage(2);
+}
+
+function nextPage(num){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById("page"+num).classList.add('active');
+}
+
+function checkPass(){
+let pass=n1.value+n2.value+n3.value+n4.value;
+if(pass==="0118"){
+nextPage(3);
+}else{
+alert("Wrong Password ❤️");
+}
+}
+
+function openLetter(){
+document.getElementById("popup").style.display="flex";
+typeLetter();
+}
+
+let msg=`Hi mikaela,
+
+
+i regret to inform you that you have accidentally gained a fan… and also a part-time programmer apparently 😭
+
+don’t worry, i’m a very low-maintenance fan. no screaming, no banners… just quietly existing and randomly doing code like ??? why am i like this
+
+but seriously, you’re really cool. like if there was a ranking system, you’d be at the top, and i’d be somewhere in the background debugging my life and hoping it compiles
+
+also i don’t know why but i keep ending up doing code for you like it’s my side quest or something. not complaining tho, it’s kinda funny at this point. 10/10 would debug again 👍
+
+this is not a confession or anything dramatic btw. just me acknowledging that you’ve got main character energy while i’m out here writing code and pretending i know what i’m doing
+
+and hey, if you ever need someone to debug your problems, i’ll always be here—right behind you, ready to help
+
+anyway congrats on being awesome. no action needed from your side (unless you need more code… which, let’s be honest, i’ll probably do anyway)
+
+— Dexuzzzzzzzzzz
+
+`;
+
+let i=0;
+
+function typeLetter(){
+document.getElementById("typed").innerHTML="";
+i=0;
+
+let typing=setInterval(()=>{
+if(i<msg.length){
+document.getElementById("typed").innerHTML+=msg.charAt(i);
+i++;
+}else{
+clearInterval(typing);
+}
+},40);
+}
+
+function askMemories(){
+document.getElementById("popup").style.display="none";
+document.getElementById("question").style.display="flex";
+}
+
+let size=1;
+
+function growYes(){
+size+=0.3;
+document.getElementById("yesBtn").style.transform="scale("+size+")";
+}
+
+let index=0;
+let totalSlides=document.querySelectorAll("#slides img").length;
+
+function moveSlide(n){
+index+=n;
+if(index>=totalSlides) index=0;
+if(index<0) index=totalSlides-1;
+document.getElementById("slides").style.transform="translateX(-"+(index*100)+"%)";
+}
+
+setInterval(()=>{
+if(document.getElementById("page4").classList.contains("active")){
+moveSlide(1);
+}
+},3000);
+
+function openGallery(){
+document.getElementById("galleryBox").style.display="flex";
+}
+
+function closeGallery(){
+document.getElementById("galleryBox").style.display="none";
+}
+</script>
+
+</body>
+</html>
